@@ -1,0 +1,46 @@
+
+table.league-box td,
+table.league-box th {
+    border-collapse: collapse;
+    border: 1px solid black;
+    padding: 5px;
+}
+
+.letter-box,
+.score-box,
+.bp-box,
+.total-box {
+    width: 40px;
+}
+
+td.bp-box {
+    background-color: lightgrey;
+}
+.score-box.black {
+    background-color: black;
+}
+
+th,
+.letter-box {
+    background-color: purple;
+    color: white;
+    font-weight: bold;
+}
+
+.score-box,
+.letter-box,
+.bp-box,
+.total-box {
+    text-align: center;
+}
+table.league-box .name {
+    width: 200px;
+}
+
+table.league-box .tel {
+    width: 150px;
+}
+
+table.league-box .email {
+    width: 250px;
+}
