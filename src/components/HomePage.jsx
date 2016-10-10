@@ -1,5 +1,4 @@
-import React from 'react';
-
+import React, {PropTypes} from 'react';
 
 const getLetterForIndex = (index) => {
     return String.fromCharCode(65 + +index);
@@ -45,38 +44,49 @@ const LeagueBoxRow = (props) => {
     );
 };
 
-const LeagueBox = (props) => {
+class LeagueBox extends React.Component {
 
-    const {leagueData} = props;
-    const leagueBoxRows = [];
-    let boxCount = leagueData.size;
-    let i = 0;
-    let scoreBoxHeaders = [];
-    leagueData.forEach((scores, player) => {
-        leagueBoxRows.push(<LeagueBoxRow key={i} index={i} {...player} boxCount={boxCount} scores={scores} />);
-        const letter = getLetterForIndex(i);
-        scoreBoxHeaders.push(<th key={i} className="letter-box">{letter}</th>);
-        i++;
-    });
-    return (
-        <table className="league-box">
-            <thead>
-            <tr>
-                <th className="name">Name</th>
-                <th className="tel">Tel 1</th>
-                <th className="tel">Tel 2</th>
-                <th className="email">Email</th>
-                <th>&nbsp;</th>
-                {scoreBoxHeaders}
-                <th className="bp-box">BP</th>
-                <th className="total-box">Total</th>
-            </tr>
-            </thead>
-            <tbody>
-                {leagueBoxRows}
-            </tbody>
-        </table>
-    );
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+
+        const {leagueData} = this.props;
+        const leagueBoxRows = [];
+        let boxCount = leagueData.size;
+        let i = 0;
+        let scoreBoxHeaders = [];
+        leagueData.forEach((scores, player) => {
+            leagueBoxRows.push(<LeagueBoxRow key={i} index={i} {...player} boxCount={boxCount} scores={scores}/>);
+            const letter = getLetterForIndex(i);
+            scoreBoxHeaders.push(<th key={i} className="letter-box">{letter}</th>);
+            i++;
+        });
+        return (
+            <table className="league-box">
+                <thead>
+                <tr>
+                    <th className="name">Name</th>
+                    <th className="tel">Tel 1</th>
+                    <th className="tel">Tel 2</th>
+                    <th className="email">Email</th>
+                    <th>&nbsp;</th>
+                    {scoreBoxHeaders}
+                    <th className="bp-box">BP</th>
+                    <th className="total-box">Total</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {leagueBoxRows}
+                </tbody>
+            </table>
+        );
+    }
+}
+
+LeagueBox.propTypes = {
+    leagueData: React.PropTypes.instanceOf(Map)
 };
 
 const player = [
