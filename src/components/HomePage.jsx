@@ -1,15 +1,38 @@
 import React from 'react';
 
-const LeageBoxRow = (props) => {
 
-    const letter = String.fromCharCode(65 + +props.index);
+const getLetterForIndex = (index) => {
+    return String.fromCharCode(65 + +index);
+};
+
+const LeagueBoxRow = (props) => {
+    const letter = getLetterForIndex(props.index);
     let isPlayerRow;
+    let classNames = [];
     const scoreBoxes = [];
-    for(let i = 1; i <= props.boxCount; i++) {
-        isPlayerRow = ((i-1) == props.index);
-        const className = isPlayerRow ? 'score-box black' : 'score-box';
-        scoreBoxes.push(<td key={i} className={className}></td>);
-    }
+    let i = 0;
+
+    props.scores.forEach((score, opponent) => {
+
+        isPlayerRow = (i++ === props.index);
+
+        if(isPlayerRow) {
+            classNames.push('black');
+            scoreBoxes.push(<td key={i++} className="score-box black">&nbsp;</td>);
+        }
+
+        classNames = ['score-box'];
+
+        if(opponent == 'bp') {
+            classNames.push('bp-box');
+        }
+        if(opponent == 'total') {
+            classNames.push('total-box');
+        }
+
+        scoreBoxes.push(<td key={i} className={classNames.join(' ')}>{score}</td>);
+    });
+
     return (
         <tr>
             <td>{props.name}</td>
@@ -18,13 +41,23 @@ const LeageBoxRow = (props) => {
             <td>{props.email}</td>
             <td className="letter-box">{letter}</td>
             {scoreBoxes}
-            <td className="bp-box"></td>
-            <td className="total-box"></td>
         </tr>
     );
 };
 
-const LeagueBox = () => {
+const LeagueBox = (props) => {
+
+    const {leagueData} = props;
+    const leagueBoxRows = [];
+    let boxCount = leagueData.size;
+    let i = 0;
+    let scoreBoxHeaders = [];
+    leagueData.forEach((scores, player) => {
+        leagueBoxRows.push(<LeagueBoxRow key={i} index={i} {...player} boxCount={boxCount} scores={scores} />);
+        const letter = getLetterForIndex(i);
+        scoreBoxHeaders.push(<th key={i} className="letter-box">{letter}</th>);
+        i++;
+    });
     return (
         <table className="league-box">
             <thead>
@@ -33,34 +66,72 @@ const LeagueBox = () => {
                 <th className="tel">Tel 1</th>
                 <th className="tel">Tel 2</th>
                 <th className="email">Email</th>
-                <th></th>
-                <th className="letter-box">A</th>
-                <th className="letter-box">B</th>
-                <th className="letter-box">C</th>
-                <th className="letter-box">D</th>
-                <th className="letter-box">E</th>
-                <th className="letter-box">F</th>
+                <th>&nbsp;</th>
+                {scoreBoxHeaders}
                 <th className="bp-box">BP</th>
                 <th className="total-box">Total</th>
             </tr>
             </thead>
             <tbody>
-                <LeageBoxRow key="0" index="0" boxCount="6" name="Richard Saunders" tel1="00000 000 000" tel2="" email="richard@sdevsolutions.com" />
-                <LeageBoxRow key="1" index="1" boxCount="6" name="John Doe" tel1="00000 000 000" tel2="00000 000 000" email="xxxx@xxxxx.xxx" />
-                <LeageBoxRow key="2" index="2" boxCount="6" name="Bruce Banner" tel1="00000 000 000" tel2="" email="xxxx@xxxxx.xxx" />
-                <LeageBoxRow key="3" index="3" boxCount="6" name="Stephen Strange" tel1="00000 000 000" tel2="00000 000 000" email="xxxx@xxxxx.xxx" />
-                <LeageBoxRow key="4" index="4" boxCount="6" name="Tony Stark" tel1="00000 000 000" tel2="" email="xxxx@xxxxx.xxx" />
-                <LeageBoxRow key="5" index="5" boxCount="6" name="Bruice Wayne" tel1="00000 000 000" tel2="" email="" />
+                {leagueBoxRows}
             </tbody>
         </table>
     );
 };
 
+const player = [
+    {
+        name: 'Richard Saunders',
+        tel1: '00000 000 000',
+        tel2: '',
+        email: 'richard@sdevsolutions.com'
+    },
+    {
+        name: 'John Doe',
+        tel1: '00000 000 000',
+        tel2: '00000 000 000',
+        email: 'xxxx@xxxxx.xxx'
+    },
+    {
+        name: 'Bruce Banner',
+        tel1: '00000 000 000',
+        tel2: '',
+        email: 'xxxx@xxxxx.xxx'
+    },
+    {
+        name: 'Stephen Strange',
+        tel1: '00000 000 000',
+        tel2: '',
+        email: 'xxxx@xxxxx.xxx'
+    },
+    {
+        name: 'Tony Stark',
+        tel1: '00000 000 000',
+        tel2: '00000 000 000',
+        email: 'xxxx@xxxxx.xxx'
+    },
+    {
+        name: 'Bruice Wayne',
+        tel1: '00000 000 000',
+        tel2: '',
+        email: ''
+    },
+
+];
+
+const leagueDataMap = new Map();
+leagueDataMap.set(player[0], new Map([[player[1], 7], [player[2], 6], [player[3], null], [player[4], null], [player[5], null], ['bp', null], ['total', null]]));
+leagueDataMap.set(player[1], new Map([[player[0], 1], [player[2], null], [player[3], null], [player[4], null], [player[5], null], ['bp', null], ['total', null]]));
+leagueDataMap.set(player[2], new Map([[player[0], 2], [player[1], null], [player[3], null], [player[4], null], [player[5], null], ['bp', null], ['total', null]]));
+leagueDataMap.set(player[3], new Map([[player[0], null], [player[1], null], [player[2], null], [player[4], null], [player[5], null], ['bp', null], ['total', null]]));
+leagueDataMap.set(player[4], new Map([[player[0], null], [player[1], null], [player[2], null], [player[3], null], [player[5], null], ['bp', null], ['total', null]]));
+leagueDataMap.set(player[5], new Map([[player[0], null], [player[1], null], [player[2], null], [player[3], null], [player[4], null], ['bp', null], ['total', null]]));
+
 const HomePage = () => {
     return (
         <div>
             <h1>Home</h1>
-            <LeagueBox />
+            <LeagueBox leagueData={leagueDataMap} />
         </div>
     );
 };
