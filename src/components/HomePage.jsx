@@ -6,12 +6,13 @@ const getLetterForIndex = (index) => {
 
 const LeagueBoxRow = (props) => {
     const letter = getLetterForIndex(props.index);
+    const {player, submitScore, scores} = props;
     let isPlayerRow;
     let classNames = [];
     const scoreBoxes = [];
     let i = 0;
 
-    props.scores.forEach((score, opponent) => {
+    scores.forEach((score, opponent) => {
 
         isPlayerRow = (i++ === props.index);
 
@@ -29,15 +30,17 @@ const LeagueBoxRow = (props) => {
             classNames.push('total-box');
         }
 
-        scoreBoxes.push(<td key={i} className={classNames.join(' ')}>{score}</td>);
+        const scoreMap = new Map([[player, 6], [opponent, 4]]);
+
+        scoreBoxes.push(<td key={i} className={classNames.join(' ')} onClick={() => submitScore(scoreMap)}>{score}</td>);
     });
 
     return (
         <tr>
-            <td>{props.name}</td>
-            <td>{props.tel1}</td>
-            <td>{props.tel2}</td>
-            <td>{props.email}</td>
+            <td>{player.name}</td>
+            <td>{player.tel1}</td>
+            <td>{player.tel2}</td>
+            <td>{player.email}</td>
             <td className="letter-box">{letter}</td>
             {scoreBoxes}
         </tr>
@@ -48,17 +51,41 @@ class LeagueBox extends React.Component {
 
     constructor(props) {
         super(props);
+
+        this.state = {
+            leagueData: props.leagueData
+        };
+
+        this.submitScore = this.submitScore.bind(this);
+    }
+
+    submitScore(scoreMap) {
+        const {leagueData} = this.state;
+
+        const [player1, player2] = [...scoreMap.keys()];
+        const [score1, score2] = [...scoreMap.values()];
+
+        leagueData.get(player1).set(player2, score1);
+        leagueData.get(player2).set(player1, score2);
+        this.setState({
+            leagueData
+        })
     }
 
     render() {
 
-        const {leagueData} = this.props;
+        const {leagueData} = this.state;
         const leagueBoxRows = [];
-        let boxCount = leagueData.size;
         let i = 0;
         let scoreBoxHeaders = [];
         leagueData.forEach((scores, player) => {
-            leagueBoxRows.push(<LeagueBoxRow key={i} index={i} {...player} boxCount={boxCount} scores={scores}/>);
+            leagueBoxRows.push(<LeagueBoxRow
+                key={i}
+                index={i}
+                scores={scores}
+                submitScore={this.submitScore}
+                player={player}
+            />);
             const letter = getLetterForIndex(i);
             scoreBoxHeaders.push(<th key={i} className="letter-box">{letter}</th>);
             i++;
