@@ -44,3 +44,7 @@ table.league-box .tel {
 table.league-box .email {
     width: 250px;
 }
+
+.highlight {
+    background-color: moccasin;
+}

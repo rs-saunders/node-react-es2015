@@ -9,10 +9,13 @@ class LeagueBox extends React.Component {
         super(props);
 
         this.state = {
-            leagueData: props.leagueData
+            leagueData: props.leagueData,
+            playerOptions: props.playerOptions
         };
 
         this.submitScore = this.submitScore.bind(this);
+        this.highlightMatch = this.highlightMatch.bind(this);
+        this.highlightPlayer = this.highlightPlayer.bind(this);
     }
 
     submitScore(scoreMap) {
@@ -25,7 +28,29 @@ class LeagueBox extends React.Component {
         leagueData.get(player2).set(player1, score2);
         this.setState({
             leagueData
-        })
+        });
+    }
+
+    highlightMatch(...players) {
+        const {playerOptions} = this.state;
+        playerOptions.forEach((options, player) => {
+            options.rowHighlight = false;
+            options.boxHighlight = (players.indexOf(player) !== -1);
+        });
+        this.setState({
+            playerOptions
+        });
+    }
+
+    highlightPlayer(playerToHighlight) {
+        const {playerOptions} = this.state;
+        playerOptions.forEach((options, player) => {
+            options.rowHighlight = (player === playerToHighlight);
+            options.boxHighlight = (players.indexOf(player) !== -1);
+        });
+        this.setState({
+            playerOptions
+        });
     }
 
     render() {
@@ -40,7 +65,10 @@ class LeagueBox extends React.Component {
                 index={i}
                 scores={scores}
                 submitScore={this.submitScore}
+                highlightMatch={this.highlightMatch}
+                highlightPlayer={this.highlightPlayer}
                 player={player}
+                playerOptions={this.state.playerOptions}
             />);
             const letter = getLetterForIndex(i);
             scoreBoxHeaders.push(<th key={i} className="letter-box">{letter}</th>);

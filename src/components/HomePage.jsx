@@ -49,11 +49,21 @@ leagueDataMap.set(player[3], new Map([[player[0], null], [player[1], null], [pla
 leagueDataMap.set(player[4], new Map([[player[0], null], [player[1], null], [player[2], null], [player[3], null], [player[5], null], ['bp', null], ['total', null]]));
 leagueDataMap.set(player[5], new Map([[player[0], null], [player[1], null], [player[2], null], [player[3], null], [player[4], null], ['bp', null], ['total', null]]));
 
+const playerOptions = new Map();
+playerOptions.set(player[0], {boxHighlight: false, rowHighlight: false});
+playerOptions.set(player[1], {boxHighlight: false, rowHighlight: false});
+playerOptions.set(player[2], {boxHighlight: false, rowHighlight: false});
+playerOptions.set(player[3], {boxHighlight: false, rowHighlight: false});
+playerOptions.set(player[4], {boxHighlight: false, rowHighlight: false});
+playerOptions.set(player[5], {boxHighlight: false, rowHighlight: false});
+playerOptions.set('bp', {boxHighlight: false, rowHighlight: false});
+playerOptions.set('total', {boxHighlight: false, rowHighlight: false});
+
 const HomePage = () => {
     return (
         <div>
             <h1>Home</h1>
-            <LeagueBox leagueData={leagueDataMap} />
+            <LeagueBox leagueData={leagueDataMap} playerOptions={playerOptions}/>
         </div>
     );
 };

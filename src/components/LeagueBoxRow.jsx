@@ -3,7 +3,9 @@ import {getLetterForIndex} from '../utils';
 
 const LeagueBoxRow = (props) => {
     const letter = getLetterForIndex(props.index);
-    const {player, submitScore, scores} = props;
+    const {player, submitScore, highlightMatch, scores, playerOptions: allPlayerOptions} = props;
+    const playerOptions = allPlayerOptions.get(player);
+
     let isPlayerRow;
     let classNames = [];
     const scoreBoxes = [];
@@ -27,9 +29,20 @@ const LeagueBoxRow = (props) => {
             classNames.push('total-box');
         }
 
+        const opponentOptions = allPlayerOptions.get(opponent);
+
+        if(playerOptions.boxHighlight && opponentOptions.boxHighlight) {
+            classNames.push('highlight');
+        }
+
         const scoreMap = new Map([[player, 6], [opponent, 4]]);
 
-        scoreBoxes.push(<td key={i} className={classNames.join(' ')} onClick={() => submitScore(scoreMap)}>{score}</td>);
+        scoreBoxes.push(<td key={i}
+                            className={classNames.join(' ')}
+                            onMouseOver={() => highlightMatch(player, opponent)}
+                            onMouseOut={() => highlightMatch()}
+                            onClick={() => submitScore(scoreMap)}
+                            >{score}</td>);
     });
 
     return (
