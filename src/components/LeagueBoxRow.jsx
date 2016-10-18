@@ -3,7 +3,7 @@ import {getLetterForIndex} from '../utils';
 
 const LeagueBoxRow = (props) => {
     const letter = getLetterForIndex(props.index);
-    const {player, submitScore, highlightMatch, scores, playerOptions: allPlayerOptions} = props;
+    const {player, submitScore, highlightMatch, highlightPlayer, scores, playerOptions: allPlayerOptions} = props;
     const playerOptions = allPlayerOptions.get(player);
 
     let isPlayerRow;
@@ -31,7 +31,7 @@ const LeagueBoxRow = (props) => {
 
         const opponentOptions = allPlayerOptions.get(opponent);
 
-        if(playerOptions.boxHighlight && opponentOptions.boxHighlight) {
+        if(playerOptions.rowHighlight || opponentOptions.rowHighlight || (playerOptions.boxHighlight && opponentOptions.boxHighlight)) {
             classNames.push('highlight');
         }
 
@@ -51,7 +51,10 @@ const LeagueBoxRow = (props) => {
             <td>{player.tel1}</td>
             <td>{player.tel2}</td>
             <td>{player.email}</td>
-            <td className="letter-box">{letter}</td>
+            <td className="letter-box"
+                onMouseOver={() => highlightPlayer(player)}
+                onMouseOut={() => highlightPlayer()}
+                >{letter}</td>
             {scoreBoxes}
         </tr>
     );

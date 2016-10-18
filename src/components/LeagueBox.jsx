@@ -46,7 +46,7 @@ class LeagueBox extends React.Component {
         const {playerOptions} = this.state;
         playerOptions.forEach((options, player) => {
             options.rowHighlight = (player === playerToHighlight);
-            options.boxHighlight = (players.indexOf(player) !== -1);
+            options.boxHighlight = false;
         });
         this.setState({
             playerOptions
