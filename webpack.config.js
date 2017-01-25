@@ -1,3 +1,5 @@
+import webpack from 'webpack';
+
 export default {
     resolve: {
         extensions: ['', '.js', '.jsx']
@@ -5,7 +7,7 @@ export default {
     debug: true,
     devtool: 'eval-source-map',
     entry: [
-        './src/index.jsx'
+        './src/index.js'
     ],
     target: 'web',
     output: {

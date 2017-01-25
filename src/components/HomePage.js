@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react';
-import LeagueBox from './LeagueBox.jsx';
+import LeagueBox from './LeagueBox';
 
 const player = [
     {

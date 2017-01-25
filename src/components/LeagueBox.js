@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import {getLetterForIndex} from '../utils';
-import LeagueBoxRow from './LeagueBoxRow.jsx';
+import LeagueBoxRow from './LeagueBoxRow';
 
 
 class LeagueBox extends React.Component {

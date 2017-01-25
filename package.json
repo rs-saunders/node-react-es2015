@@ -4,7 +4,7 @@
   "description": "Demo react application using es2015 syntax",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node ./bin/www",
+    "start": "nodemon --watch ./src --exec babel-node ./bin/www",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "node_modules/.bin/eslint webpack.config.js src bin"
   },
@@ -36,6 +36,7 @@
     "eslint": "^3.5.0",
     "eslint-plugin-react": "^6.2.2",
     "file-loader": "^0.9.0",
+    "nodemon": "^1.11.0",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.2",
