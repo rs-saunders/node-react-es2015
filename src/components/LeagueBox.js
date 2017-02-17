@@ -8,14 +8,26 @@ class LeagueBox extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            leagueData: props.leagueData,
-            playerOptions: props.playerOptions
-        };
+        const {leagueData} = props;
 
+        this.initPlayerOptions = this.initPlayerOptions.bind(this);
         this.submitScore = this.submitScore.bind(this);
         this.highlightMatch = this.highlightMatch.bind(this);
         this.highlightPlayer = this.highlightPlayer.bind(this);
+
+        this.state = {
+            leagueData,
+            playerOptions: this.initPlayerOptions(leagueData),
+        };
+    }
+
+    initPlayerOptions(leagueData) {
+        const options = {boxHighlight: false, rowHighlight: false};
+        const playerOptions = new Map([...leagueData.keys()].map(player => [player, {...options}]));
+        playerOptions.set('bp', {...options});
+        playerOptions.set('total', {...options});
+
+        return playerOptions;
     }
 
     submitScore(scoreMap) {
