@@ -1,4 +1,8 @@
 import React, {PropTypes} from 'react';
+import { createStore, bindActionCreators } from 'redux'
+import { Provider, connect } from 'react-redux';
+import leagueReducer from '../reducers/leagueReducer';
+import * as leagueActions from '../actions/leagueActions';
 import LeagueBox from './LeagueBox';
 
 const player = [
@@ -49,12 +53,36 @@ leagueDataMap.set(player[3], new Map([[player[0], null], [player[1], null], [pla
 leagueDataMap.set(player[4], new Map([[player[0], null], [player[1], null], [player[2], null], [player[3], null], [player[5], null], ['bp', null], ['total', null]]));
 leagueDataMap.set(player[5], new Map([[player[0], null], [player[1], null], [player[2], null], [player[3], null], [player[4], null], ['bp', null], ['total', null]]));
 
+const initialState = {
+    players: player,
+    leagueData: leagueDataMap,
+};
+
+let store = createStore(leagueReducer, initialState);
+
+const mapStateToProps = (state) => {
+    return {
+        leagueData: state.leagueData,
+        players: state.players,
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        actions: bindActionCreators(leagueActions, dispatch),
+    }
+};
+
+const ConnectedLeagueBox = connect(mapStateToProps, mapDispatchToProps)(LeagueBox);
+
 const HomePage = () => {
     return (
-        <div>
-            <h1>Home</h1>
-            <LeagueBox leagueData={leagueDataMap} />
-        </div>
+        <Provider store={store}>
+            <div>
+                <h1>Home</h1>
+                <ConnectedLeagueBox />
+            </div>
+        </Provider>
     );
 };
 

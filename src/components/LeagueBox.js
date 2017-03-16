@@ -31,6 +31,8 @@ class LeagueBox extends React.Component {
     }
 
     submitScore(scoreMap) {
+
+        //this.state.actions.submitScore(scoreMap);
         const {leagueData} = this.state;
 
         const [player1, player2] = [...scoreMap.keys()];
