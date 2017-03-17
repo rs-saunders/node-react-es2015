@@ -11,12 +11,10 @@ class LeagueBox extends React.Component {
         const {leagueData} = props;
 
         this.initPlayerOptions = this.initPlayerOptions.bind(this);
-        this.submitScore = this.submitScore.bind(this);
         this.highlightMatch = this.highlightMatch.bind(this);
         this.highlightPlayer = this.highlightPlayer.bind(this);
 
         this.state = {
-            leagueData,
             playerOptions: this.initPlayerOptions(leagueData),
         };
     }
@@ -28,21 +26,6 @@ class LeagueBox extends React.Component {
         playerOptions.set('total', {...options});
 
         return playerOptions;
-    }
-
-    submitScore(scoreMap) {
-
-        //this.state.actions.submitScore(scoreMap);
-        const {leagueData} = this.state;
-
-        const [player1, player2] = [...scoreMap.keys()];
-        const [score1, score2] = [...scoreMap.values()];
-
-        leagueData.get(player1).set(player2, score1);
-        leagueData.get(player2).set(player1, score2);
-        this.setState({
-            leagueData
-        });
     }
 
     highlightMatch(...players) {
@@ -69,7 +52,7 @@ class LeagueBox extends React.Component {
 
     render() {
 
-        const {leagueData} = this.state;
+        const {leagueData, actions} = this.props;
         const leagueBoxRows = [];
         let i = 0;
         let scoreBoxHeaders = [];
@@ -78,7 +61,7 @@ class LeagueBox extends React.Component {
                 key={i}
                 index={i}
                 scores={scores}
-                submitScore={this.submitScore}
+                submitScore={actions.submitScore}
                 highlightMatch={this.highlightMatch}
                 highlightPlayer={this.highlightPlayer}
                 player={player}
@@ -111,7 +94,8 @@ class LeagueBox extends React.Component {
 }
 
 LeagueBox.propTypes = {
-    leagueData: React.PropTypes.instanceOf(Map)
+    leagueData: PropTypes.instanceOf(Map),
+    actions: PropTypes.object,
 };
 
 export default LeagueBox;

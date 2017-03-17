@@ -5,12 +5,12 @@ export default (state = {}, action) => {
             const {scoreMap} = action;
             const [player1, player2] = [...scoreMap.keys()];
             const [score1, score2] = [...scoreMap.values()];
-            const newLeagueData = { leagueData };
+            const newLeagueData = new Map(leagueData);
             newLeagueData.get(player1).set(player2, score1);
             newLeagueData.get(player2).set(player1, score2);
             return {
                 ...state,
-                newLeagueData,
+                leagueData: newLeagueData,
             };
 
         default:
