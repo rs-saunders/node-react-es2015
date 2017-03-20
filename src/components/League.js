@@ -79,7 +79,7 @@ const HomePage = () => {
     return (
         <Provider store={store}>
             <div>
-                <h1>Home</h1>
+                <h1>League Standings</h1>
                 <ConnectedLeagueBox />
             </div>
         </Provider>
