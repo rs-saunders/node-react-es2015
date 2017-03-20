@@ -3,7 +3,7 @@ import { createStore, bindActionCreators } from 'redux'
 import { Provider, connect } from 'react-redux';
 import leagueReducer from '../reducers/leagueReducer';
 import * as leagueActions from '../actions/leagueActions';
-import LeagueBox from './LeagueBox';
+import LeagueBox from './LeagueBox/LeagueBox';
 
 const player = [
     {

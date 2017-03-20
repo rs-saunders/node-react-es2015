@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react';
-import {getLetterForIndex} from '../utils';
+import {getLetterForIndex} from '../../utils';
 import LeagueBoxRow from './LeagueBoxRow';
 
 
