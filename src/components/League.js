@@ -75,7 +75,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const ConnectedLeagueBox = connect(mapStateToProps, mapDispatchToProps)(LeagueBox);
 
-const HomePage = () => {
+const League = () => {
     return (
         <Provider store={store}>
             <div>
@@ -86,4 +86,4 @@ const HomePage = () => {
     );
 };
 
-export default HomePage;
+export default League;

@@ -1,6 +1,8 @@
+import { SCORE, SELECT_MATCH } from '../actions/leagueActionConstants';
+
 export default (state = {}, action) => {
     switch (action.type) {
-        case 'SCORE':
+        case SCORE:
             const {leagueData} = state;
             const {scoreMap} = action;
             const [player1, player2] = [...scoreMap.keys()];
@@ -11,6 +13,14 @@ export default (state = {}, action) => {
             return {
                 ...state,
                 leagueData: newLeagueData,
+            };
+
+        case SELECT_MATCH:
+            const { players } = action;
+            const match = new Map(players.map(player => [ player, null ]));
+            return {
+                ...state,
+                match,
             };
 
         default:

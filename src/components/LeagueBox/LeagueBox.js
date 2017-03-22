@@ -61,7 +61,7 @@ class LeagueBox extends React.Component {
                 key={i}
                 index={i}
                 scores={scores}
-                submitScore={actions.submitScore}
+                selectMatch={actions.selectMatch}
                 highlightMatch={this.highlightMatch}
                 highlightPlayer={this.highlightPlayer}
                 player={player}

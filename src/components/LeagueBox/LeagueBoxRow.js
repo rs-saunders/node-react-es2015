@@ -3,7 +3,7 @@ import {getLetterForIndex} from '../../utils';
 
 const LeagueBoxRow = (props) => {
     const letter = getLetterForIndex(props.index);
-    const {player, submitScore, highlightMatch, highlightPlayer, scores, playerOptions: allPlayerOptions} = props;
+    const {player, selectMatch, highlightMatch, highlightPlayer, scores, playerOptions: allPlayerOptions} = props;
     const playerOptions = allPlayerOptions.get(player);
 
     let isPlayerRow;
@@ -35,13 +35,11 @@ const LeagueBoxRow = (props) => {
             classNames.push('highlight');
         }
 
-        const scoreMap = new Map([[player, 6], [opponent, 4]]);
-
         scoreBoxes.push(<td key={i}
                             className={classNames.join(' ')}
                             onMouseOver={() => highlightMatch(player, opponent)}
                             onMouseOut={() => highlightMatch()}
-                            onClick={() => submitScore(scoreMap)}
+                            onClick={() => selectMatch([ player, opponent ])}
                             >{score}</td>);
     });
 
@@ -58,6 +56,16 @@ const LeagueBoxRow = (props) => {
             {scoreBoxes}
         </tr>
     );
+};
+
+LeagueBoxRow.propTypes = {
+    actions: PropTypes.object,
+    player: PropTypes.object,
+    selectMatch: PropTypes.func,
+    highlightMatch: PropTypes.func,
+    highlightPlayer: PropTypes.func,
+    scores: PropTypes.instanceOf(Map),
+    playerOptions: PropTypes.object,
 };
 
 export default LeagueBoxRow;
