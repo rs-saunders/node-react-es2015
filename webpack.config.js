@@ -1,5 +1,3 @@
-import webpack from 'webpack';
-
 export default {
     resolve: {
         extensions: ['', '.js', '.jsx']

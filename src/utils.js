@@ -3,5 +3,5 @@ const getLetterForIndex = (index) => {
 };
 
 export {
-    getLetterForIndex
-}
+    getLetterForIndex,
+};
