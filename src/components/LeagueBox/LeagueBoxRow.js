@@ -59,7 +59,6 @@ const LeagueBoxRow = (props) => {
 };
 
 LeagueBoxRow.propTypes = {
-    actions: PropTypes.object,
     player: PropTypes.object,
     selectMatch: PropTypes.func,
     highlightMatch: PropTypes.func,

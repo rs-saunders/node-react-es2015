@@ -52,7 +52,7 @@ class LeagueBox extends React.Component {
 
     render() {
 
-        const {leagueData, actions} = this.props;
+        const {leagueData, selectMatch} = this.props;
         const leagueBoxRows = [];
         let i = 0;
         let scoreBoxHeaders = [];
@@ -61,7 +61,7 @@ class LeagueBox extends React.Component {
                 key={i}
                 index={i}
                 scores={scores}
-                selectMatch={actions.selectMatch}
+                selectMatch={selectMatch}
                 highlightMatch={this.highlightMatch}
                 highlightPlayer={this.highlightPlayer}
                 player={player}
@@ -94,8 +94,8 @@ class LeagueBox extends React.Component {
 }
 
 LeagueBox.propTypes = {
-    leagueData: PropTypes.instanceOf(Map),
-    actions: PropTypes.object,
+    leagueData: PropTypes.instanceOf(Map).isRequired,
+    selectMatch: PropTypes.func.isRequired,
 };
 
 export default LeagueBox;
