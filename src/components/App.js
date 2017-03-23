@@ -6,6 +6,8 @@ const App = (props) => {
         <div>
             <IndexLink to="/">League</IndexLink>
             {' | '}
+            <Link to="/match">Match</Link>
+            {' | '}
             <Link to="/about">About</Link>
             <br/>
             {props.children}

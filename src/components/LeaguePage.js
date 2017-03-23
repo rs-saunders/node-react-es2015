@@ -14,7 +14,13 @@ const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({ selectMatch }, dispatch);
 };
 
-const League = ({ leagueData, selectMatch }) => {
+const LeaguePage = ({ leagueData, selectMatch: dispatchSelectMatch }, context) => {
+
+    const selectMatch = (players) => {
+        dispatchSelectMatch(players);
+        context.router.push('/match');
+    };
+
     return (
         <div>
             <h1>League Standings</h1>
@@ -23,9 +29,13 @@ const League = ({ leagueData, selectMatch }) => {
     );
 };
 
-LeagueBox.propTypes = {
+LeaguePage.propTypes = {
     leagueData: PropTypes.instanceOf(Map).isRequired,
     selectMatch: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(League);
+LeaguePage.contextTypes = {
+    router: PropTypes.object,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LeaguePage);
