@@ -27,32 +27,31 @@ const MatchForm = ({ players, match, submitScore }) => {
 
 
     return (
-        <form className="form-inline">
-            <fieldset>
-
+        <div className="container">
+            <form>
                 <legend>League Match</legend>
-                <div className="form-group">
+                <div className="form-group col-md-4">
                     <label className="control-label" htmlFor="player1">Player1</label>
                     <select id="player1" name="player1" className="form-control">
                         { SelectOptions(players, player1.name) }
                     </select>
                 </div>
-                <div className="form-group">
+                <div className="form-group col-md-4">
                     <label className="control-label" htmlFor="score">Vs</label>
                     <select id="score" name="score" className="form-control">
                         <optgroup label="Win - Lose">
-                        <option value="2">3 - 0</option>
-                        <option value="2">3 - 1</option>
-                        <option value="3">3 - 2</option>
+                        <option value="2">7 - 1</option>
+                        <option value="2">6 - 2</option>
+                        <option value="3">6 - 4</option>
                         </optgroup>
                         <optgroup label="Lose - Win">
-                            <option value="1">2 - 3</option>
-                            <option value="1">1 - 3</option>
-                            <option value="1">0 - 3</option>
+                            <option value="1">4 - 6</option>
+                            <option value="1">2 - 6</option>
+                            <option value="1">1 - 7</option>
                         </optgroup>
                     </select>
                 </div>
-                <div className="form-group">
+                <div className="form-group col-md-4">
                     <label className="control-label" htmlFor="player2">Player2</label>
                     <select id="player2" name="player2" className="form-control">
                         { SelectOptions(players, player2.name) }
@@ -61,8 +60,8 @@ const MatchForm = ({ players, match, submitScore }) => {
                 <div className="form-group">
                     <button id="submit" name="submit" className="btn btn-primary">Submit</button>
                 </div>
-            </fieldset>
-        </form>
+            </form>
+        </div>
     );
 };
 

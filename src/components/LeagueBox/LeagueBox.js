@@ -75,9 +75,9 @@ class LeagueBox extends React.Component {
                 <thead>
                 <tr>
                     <th className="name">Name</th>
-                    <th className="tel">Tel 1</th>
-                    <th className="tel">Tel 2</th>
-                    <th className="email">Email</th>
+                    <th className="tel hidden-sm hidden-xs">Tel 1</th>
+                    <th className="tel hidden-sm hidden-xs">Tel 2</th>
+                    <th className="email hidden-sm hidden-xs">Email</th>
                     <th>&nbsp;</th>
                     {scoreBoxHeaders}
                     <th className="bp-box">BP</th>

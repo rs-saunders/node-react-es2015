@@ -22,7 +22,7 @@ const LeaguePage = ({ leagueData, selectMatch: dispatchSelectMatch }, context) =
     };
 
     return (
-        <div>
+        <div className="container">
             <h1>League Standings</h1>
             <LeagueBox leagueData={leagueData} selectMatch={selectMatch} />
         </div>

@@ -46,9 +46,9 @@ const LeagueBoxRow = (props) => {
     return (
         <tr>
             <td>{player.name}</td>
-            <td>{player.tel1}</td>
-            <td>{player.tel2}</td>
-            <td>{player.email}</td>
+            <td className="hidden-sm hidden-xs">{player.tel1}</td>
+            <td className="hidden-sm hidden-xs">{player.tel2}</td>
+            <td className="hidden-sm hidden-xs">{player.email}</td>
             <td className="letter-box"
                 onMouseOver={() => highlightPlayer(player)}
                 onMouseOut={() => highlightPlayer()}
