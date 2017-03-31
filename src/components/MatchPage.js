@@ -27,50 +27,40 @@ const MatchForm = ({ players, match, submitScore }) => {
 
 
     return (
-        <form className="form-horizontal">
+        <form className="form-inline">
             <fieldset>
 
                 <legend>League Match</legend>
-
                 <div className="form-group">
-                    <label className="col-md-4 control-label" htmlFor="player1">Player1</label>
-                    <div className="col-md-4">
-                        <select id="player1" name="player1" className="form-control">
-                            { SelectOptions(players, player1.name) }
-                        </select>
-                    </div>
-                    <div className="col-md-1">
-                        <select id="score1" name="score2" className="form-control">
-                            <option value="3">Won - 3</option>
-                            <option value="2">Lost - 2</option>
-                            <option value="1">Lost - 1</option>
-                        </select>
-                    </div>
+                    <label className="control-label" htmlFor="player1">Player1</label>
+                    <select id="player1" name="player1" className="form-control">
+                        { SelectOptions(players, player1.name) }
+                    </select>
                 </div>
-
                 <div className="form-group">
-                    <label className="col-md-4 control-label" htmlFor="player2">Player2</label>
-                    <div className="col-md-4">
-                        <select id="player2" name="player2" className="form-control">
-                            { SelectOptions(players, player2.name) }
-                        </select>
-                    </div>
-                    <div className="col-md-1">
-                        <select id="score2" name="score2" className="form-control">
-                            <option value="3">Won - 3</option>
-                            <option value="2">Lost - 2</option>
-                            <option value="1">Lost - 1</option>
-                        </select>
-                    </div>
+                    <label className="control-label" htmlFor="score">Vs</label>
+                    <select id="score" name="score" className="form-control">
+                        <optgroup label="Win - Lose">
+                        <option value="2">3 - 0</option>
+                        <option value="2">3 - 1</option>
+                        <option value="3">3 - 2</option>
+                        </optgroup>
+                        <optgroup label="Lose - Win">
+                            <option value="1">2 - 3</option>
+                            <option value="1">1 - 3</option>
+                            <option value="1">0 - 3</option>
+                        </optgroup>
+                    </select>
                 </div>
-
-
                 <div className="form-group">
-                    <div className="col-md-4">
-                        <button id="submit" name="submit" className="btn btn-primary">Submit</button>
-                    </div>
+                    <label className="control-label" htmlFor="player2">Player2</label>
+                    <select id="player2" name="player2" className="form-control">
+                        { SelectOptions(players, player2.name) }
+                    </select>
                 </div>
-
+                <div className="form-group">
+                    <button id="submit" name="submit" className="btn btn-primary">Submit</button>
+                </div>
             </fieldset>
         </form>
     );
@@ -79,7 +69,7 @@ const MatchForm = ({ players, match, submitScore }) => {
 const MatchPage = ({ match, players, submitScore }) => {
     const [player1, player2] = [...match.keys()];
     return (
-        <div>
+        <div className="container">
             <h1>{player1.name} vs {player2.name}</h1>
             <MatchForm match={match} players={players} submitScore={submitScore} />
             <Link to="/">back</Link>
