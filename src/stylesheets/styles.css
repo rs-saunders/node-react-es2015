@@ -6,6 +6,15 @@ table.league-box th {
     padding: 5px;
 }
 
+.score-box {
+    cursor: pointer;
+}
+
+.bp-box,
+.total-box {
+    cursor: default;
+}
+
 .letter-box,
 .score-box,
 .bp-box,
@@ -18,6 +27,7 @@ td.bp-box {
 }
 .score-box.black {
     background-color: black;
+    cursor: default;
 }
 
 th,

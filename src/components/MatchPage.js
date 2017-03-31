@@ -33,6 +33,7 @@ const MatchForm = ({ players, match, submitScore }) => {
                 <div className="form-group col-md-4">
                     <label className="control-label" htmlFor="player1">Player1</label>
                     <select id="player1" name="player1" className="form-control">
+                        <option>Please select...</option>
                         { SelectOptions(players, player1.name) }
                     </select>
                 </div>
@@ -54,6 +55,7 @@ const MatchForm = ({ players, match, submitScore }) => {
                 <div className="form-group col-md-4">
                     <label className="control-label" htmlFor="player2">Player2</label>
                     <select id="player2" name="player2" className="form-control">
+                        <option>Please select...</option>
                         { SelectOptions(players, player2.name) }
                     </select>
                 </div>
@@ -69,7 +71,9 @@ const MatchPage = ({ match, players, submitScore }) => {
     const [player1, player2] = [...match.keys()];
     return (
         <div className="container">
-            <h1>{player1.name} vs {player2.name}</h1>
+            { player1.name && player2.name &&
+                <h1>{player1.name} vs {player2.name}</h1>
+            }
             <MatchForm match={match} players={players} submitScore={submitScore} />
             <Link to="/">back</Link>
         </div>

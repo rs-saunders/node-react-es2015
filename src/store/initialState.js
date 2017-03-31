@@ -49,4 +49,5 @@ leagueDataMap.set(player[5], new Map([[player[0], null], [player[1], null], [pla
 export default {
     players: player,
     leagueData: leagueDataMap,
+    match: [{}, {}],
 };
