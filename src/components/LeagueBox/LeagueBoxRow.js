@@ -35,12 +35,16 @@ const LeagueBoxRow = (props) => {
             classNames.push('highlight');
         }
 
-        scoreBoxes.push(<td key={opponent.id}
-                            className={classNames.join(' ')}
-                            onMouseOver={() => highlightMatch(player, opponent)}
-                            onMouseOut={() => highlightMatch()}
-                            onClick={() => selectMatch([ player, opponent ])}
-                            >{score}</td>);
+        scoreBoxes.push(
+            <td key={opponent.id}
+                className={classNames.join(' ')}
+                onMouseOver={() => highlightMatch(player, opponent)}
+                onMouseOut={() => highlightMatch()}
+                onClick={() => selectMatch([ player, opponent ])}
+            >
+                {score}
+            </td>
+        );
     });
 
     return (
@@ -52,7 +56,9 @@ const LeagueBoxRow = (props) => {
             <td className="letter-box"
                 onMouseOver={() => highlightPlayer(player)}
                 onMouseOut={() => highlightPlayer()}
-                >{letter}</td>
+            >
+                {letter}
+            </td>
             {scoreBoxes}
         </tr>
     );

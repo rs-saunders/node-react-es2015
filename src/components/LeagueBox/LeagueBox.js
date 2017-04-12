@@ -56,16 +56,18 @@ class LeagueBox extends React.Component {
         let i = 0;
         let scoreBoxHeaders = [];
         leagueData.forEach((scores, player) => {
-            leagueBoxRows.push(<LeagueBoxRow
-                key={player.id}
-                index={i}
-                scores={scores}
-                selectMatch={selectMatch}
-                highlightMatch={this.highlightMatch}
-                highlightPlayer={this.highlightPlayer}
-                player={player}
-                playerOptions={this.state.playerOptions}
-            />);
+            leagueBoxRows.push(
+                <LeagueBoxRow
+                    key={player.id}
+                    index={i}
+                    scores={scores}
+                    selectMatch={selectMatch}
+                    highlightMatch={this.highlightMatch}
+                    highlightPlayer={this.highlightPlayer}
+                    player={player}
+                    playerOptions={this.state.playerOptions}
+                />
+            );
             const letter = getLetterForIndex(i);
             scoreBoxHeaders.push(<th key={player.id} className="letter-box">{letter}</th>);
             i++;
@@ -85,7 +87,7 @@ class LeagueBox extends React.Component {
                 </tr>
                 </thead>
                 <tbody>
-                {leagueBoxRows}
+                    {leagueBoxRows}
                 </tbody>
             </table>
         );
