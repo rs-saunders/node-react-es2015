@@ -1,39 +1,45 @@
 const player = [
     {
+        id: '0001',
         name: 'Richard Saunders',
         tel1: '00000 000 000',
         tel2: '',
-        email: 'richard@sdevsolutions.com'
+        email: 'richard@sdevsolutions.com',
     },
     {
+        id: '0002',
         name: 'John Doe',
         tel1: '00000 000 000',
         tel2: '00000 000 000',
-        email: 'xxxx@xxxxx.xxx'
+        email: 'xxxx@xxxxx.xxx',
     },
     {
+        id: '0003',
         name: 'Bruce Banner',
         tel1: '00000 000 000',
         tel2: '',
-        email: 'xxxx@xxxxx.xxx'
+        email: 'xxxx@xxxxx.xxx',
     },
     {
+        id: '0004',
         name: 'Stephen Strange',
         tel1: '00000 000 000',
         tel2: '',
-        email: 'xxxx@xxxxx.xxx'
+        email: 'xxxx@xxxxx.xxx',
     },
     {
+        id: '0005',
         name: 'Tony Stark',
         tel1: '00000 000 000',
         tel2: '00000 000 000',
-        email: 'xxxx@xxxxx.xxx'
+        email: 'xxxx@xxxxx.xxx',
     },
     {
+        id: '0006',
         name: 'Bruice Wayne',
         tel1: '00000 000 000',
         tel2: '',
-        email: ''
+        email: '',
     },
 
 ];

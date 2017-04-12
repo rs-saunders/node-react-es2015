@@ -17,7 +17,7 @@ const LeagueBoxRow = (props) => {
 
         if(isPlayerRow) {
             classNames.push('black');
-            scoreBoxes.push(<td key={i++} className="score-box black">&nbsp;</td>);
+            scoreBoxes.push(<td key={player.id} className="score-box black">&nbsp;</td>);
         }
 
         classNames = ['score-box'];
@@ -35,7 +35,7 @@ const LeagueBoxRow = (props) => {
             classNames.push('highlight');
         }
 
-        scoreBoxes.push(<td key={i}
+        scoreBoxes.push(<td key={opponent.id}
                             className={classNames.join(' ')}
                             onMouseOver={() => highlightMatch(player, opponent)}
                             onMouseOut={() => highlightMatch()}
