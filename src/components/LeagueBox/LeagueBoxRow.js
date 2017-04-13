@@ -35,6 +35,7 @@ const LeagueBoxRow = (props) => {
             classNames.push('highlight');
         }
 
+        //TODO: check key uniqueness
         scoreBoxes.push(
             <td key={opponent.id}
                 className={classNames.join(' ')}

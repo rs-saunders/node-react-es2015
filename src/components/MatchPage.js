@@ -19,12 +19,10 @@ const MatchForm = ({ players, match, submitScore }) => {
 
     const [player1, player2] = [...match.keys()];
 
-    const SelectOptions = (players, selected ) => players.map((player, index) => {
-        return  (
-            <option value={ index } selected={player.name === selected}>{ player.name }</option>
-        );
-    });
-
+    //TODO: use value or defaultValue on select rathen than selected on option
+    const SelectOptions = (players, selected ) => players.map((player, index) =>
+        <option key={player.id} value={ index } selected={player.name === selected}>{ player.name }</option>
+    );
 
     return (
         <div className="container">
